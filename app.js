@@ -5,29 +5,34 @@ let prevVal = [];
 document.getElementById("subt").addEventListener("click", () => {
     if(hp > 1){
         let inputField = document.getElementById("guessField").value
-        if(inputField == ""){
-            alert("Value is mandatory");
-        }else if(inputField < 0 || inputField > 100){
-            alert("Error: Value is not correct.");
-        }else if(typeof inputField === 'number'){
-            alert("Erros: strings are not allowed!")
+        let check = Number(inputField);
+        if(check == "NaN"){
+            alert("Error: Strings are not allowed!")
         }else{
-            if(inputField == rand){
-                alert("Guessed it!");
-                rand = Math.floor(Math.random() * 100) + 1;
-                hp = 10;
-                prevVal = [];
+            if(inputField == ""){
+                alert("Error: Value is mandatory");
+            }else if(inputField < 0 || inputField > 100){
+                alert("Error: Value is not correct.");
+            }else if(prevVal.includes(inputField == true)){
+                alert("Error: Same was on list.")
             }else{
-                if(prevVal.includes(inputField)){
-                    alert("test")
+                if(inputField == rand){
+                    alert("Guessed it!");
+                    rand = Math.floor(Math.random() * 100) + 1;
+                    hp = 10;
+                    prevVal = [];
+                }else{
+                    if(prevVal.includes(inputField)){
+                        alert("test")
+                    }
+                    prevVal.push(inputField)
+                    document.getElementsByClassName("guesses")[0].innerHTML = prevVal;
+                    hp --;
+                    document.getElementsByClassName("lastResult")[0].innerHTML = hp;
+                    alert("Fail, try again!");
                 }
-                prevVal.push(inputField)
-                document.getElementsByClassName("guesses")[0].innerHTML = prevVal;
-                hp --;
-                document.getElementsByClassName("lastResult")[0].innerHTML = hp;
-                alert("Fail, try again!");
-            }
-
+    
+            }  
         }
     }else{
         alert("Game over number was: " + rand);
@@ -38,36 +43,33 @@ document.getElementById("subt").addEventListener("click", () => {
     
 })
 
-document.getElementById("subt").addEventListener("click", () => {
-    if(hp > 1){
-        let inputField = document.getElementById("guessField").value
-        if(inputField == ""){
-            alert("Value is mandatory");
-        }else if(inputField < 0 || inputField > 100){
-            alert("Error: Value is not correct.");
-        }else{
-            if(inputField == rand){
-                alert("Guessed it!");
-                rand = Math.floor(Math.random() * 100) + 1;
-                hp = 10;
-                prevVal = [];
-            }else{
-                if(prevVal.includes(inputField)){
-                    alert("test")
-                }
-                prevVal.push(inputField)
-                document.getElementsByClassName("guesses")[0].innerHTML = prevVal;
-                hp --;
-                document.getElementsByClassName("lastResult")[0].innerHTML = hp;
-                alert("Fail, try again!");
-            }
+// document.getElementById("subt").addEventListener("click", () => {
+//     if(hp > 1){
+//         let inputField = document.getElementById("guessField").value
+//         if(inputField == ""){
+//             alert("Value is mandatory");
+//         }else if(inputField < 0 || inputField > 100){
+//             alert("Error: Value is not correct.");
+//         }else{
+//             if(inputField == rand){
+//                 alert("Guessed it!");
+//                 rand = Math.floor(Math.random() * 100) + 1;
+//                 hp = 10;
+//                 prevVal = [];
+//             }else{
+//                 prevVal.push(inputField)
+//                 document.getElementsByClassName("guesses")[0].innerHTML = prevVal;
+//                 hp --;
+//                 document.getElementsByClassName("lastResult")[0].innerHTML = hp;
+//                 alert("Fail, try again!");
+//             }
 
-        }
-    }else{
-        alert("Game over number was: " + rand);
-        rand = Math.floor(Math.random() * 100) + 1;
-        hp = 10;
-        prevVal = [];
-    }
+//         }
+//     }else{
+//         alert("Game over number was: " + rand);
+//         rand = Math.floor(Math.random() * 100) + 1;
+//         hp = 10;
+//         prevVal = [];
+//     }
     
-})
+// })
