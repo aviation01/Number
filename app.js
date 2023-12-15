@@ -5,8 +5,8 @@ let prevVal = [];
 document.getElementById("subt").addEventListener("click", () => {
     if(hp > 1){
         let inputField = document.getElementById("guessField").value
-        let check = Number(inputField);
-        if(check == "NaN"){
+        inputField = Number(inputField);
+        if(typeof(inputField) === 'string'){
             alert("Error: Strings are not allowed!")
         }else{
             if(inputField == ""){
